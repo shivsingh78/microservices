@@ -9,7 +9,7 @@ function CreateSnippet() {
   const createSnippet= async(e)=>{
     e.preventDefault()
     try {
-      const result = await axios.post("http://localhost:3000/api/v1/snippet",{title,code})
+      const result = await axios.post("http://localhost:8000/api/v1/snippet",{title,code})
       console.log(result)
       alert(result.data.message)
     } catch (error) {
@@ -18,7 +18,7 @@ function CreateSnippet() {
   }
   useEffect(()=>{
 const fetchSnippet = async()=>{
-  const result = await axios.get("http://localhost:3000/api/v1/snippet")
+  const result = await axios.get("http://localhost:8000/api/v1/snippet")
   setSnippet(result.data)
 }
 fetchSnippet()

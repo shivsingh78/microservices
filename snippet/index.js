@@ -2,12 +2,16 @@ import express from "express"
 import cors from "cors"
 import snippetRouter from './routes/snippet.route.js'
 const app = express()
-const PORT=3000;
-
-app.use(cors({
-     origin:"http://localhost:5173"
-}))
+const PORT=8000;
+app.use(cors())
 app.use(express.json())
+
+app.post("/events",(req,res)=>{
+     console.log("Received Events",req.body.type)
+     return res.status(200).json({})
+})
+
+
 
 app.use("/api/v1/snippet",snippetRouter)
 

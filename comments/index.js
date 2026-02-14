@@ -6,8 +6,13 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+app.post("/events",(req,res)=>{
+     console.log("Received Events",req.body.type)
+     return res.status(200).json({})
+})
+
 app.use("/api/v1/snippet",commentRouter)
-const PORT=8000
+const PORT=8001
 app.listen(PORT,()=>{
-     console.log(`server is lisning at port ${PORT}`)
+     console.log(` Comment server is lisning at port ${PORT}`)
 })

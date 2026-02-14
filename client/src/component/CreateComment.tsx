@@ -7,7 +7,7 @@ function CreateComment({snippetId}) {
      const addComment = async (e) => {
           e.preventDefault()
           try {
-               const result = await axios.post(`http://localhost:8000/api/v1/snippet/${snippetId}/comment`,{text})
+               const result = await axios.post(`http://localhost:8001/api/v1/snippet/${snippetId}/comment`,{text})
                console.log(result.data)
                setComments([...comments,result.data.comment])
                setText("")
@@ -21,7 +21,7 @@ function CreateComment({snippetId}) {
      useEffect(()=>{
         const fetchComment = async () => {
           try {
-               const result=await axios.get(`http://localhost:8000/api/v1/snippet/${snippetId}/comment`)
+               const result=await axios.get(`http://localhost:8001/api/v1/snippet/${snippetId}/comment`)
                console.log(result.data)
                setComments(result.data)
                
