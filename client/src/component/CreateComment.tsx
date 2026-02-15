@@ -1,13 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-function CreateComment({snippetId}) {
+function CreateComment({snippet}) {
      const [text,setText]=useState("")
      const [comments,setComments]=useState([])
      const addComment = async (e) => {
           e.preventDefault()
           try {
-               const result = await axios.post(`http://localhost:8001/api/v1/snippet/${snippetId}/comment`,{text})
+               const result = await axios.post(`http://localhost:8001/api/v1/snippet/${snippet.id}/comment`,{text})
                console.log(result.data)
                setComments([...comments,result.data.comment])
                setText("")
@@ -18,27 +18,13 @@ function CreateComment({snippetId}) {
           }
      }
 
-     useEffect(()=>{
-        const fetchComment = async () => {
-          try {
-               const result=await axios.get(`http://localhost:8001/api/v1/snippet/${snippetId}/comment`)
-               console.log(result.data)
-               setComments(result.data)
-               
-          } catch (error) {
-               console.log(error)
-               
-          }
-        }
-        fetchComment()
-     },[])
-
+     
    
   return (
    <div className=" border text-balck ml-5">
      {
-          comments.map((comment,index)=>(
-               <li  key={index}>{comment.text}</li>
+          snippet.comments.map((comment,index)=>(
+               <li  key={index}>{comment.content}</li>
           ))
      }
      <form action="" className='flex items-center justify-center mt-20 gap-10' onSubmit={addComment} >

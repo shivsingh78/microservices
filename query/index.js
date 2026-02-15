@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { comments } from '../comments/database'
+
 
 const app = express()
 const PORT=8002

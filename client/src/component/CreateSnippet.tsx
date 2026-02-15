@@ -12,13 +12,13 @@ function CreateSnippet() {
       const result = await axios.post("http://localhost:8000/api/v1/snippet",{title,code})
       console.log(result)
       alert(result.data.message)
-    } catch (error) {
+    } catch (error) { 
       console.log(error)
     }
   }
   useEffect(()=>{
 const fetchSnippet = async()=>{
-  const result = await axios.get("http://localhost:8000/api/v1/snippet")
+  const result = await axios.get("http://localhost:8002/snippets")
   setSnippet(result.data)
 }
 fetchSnippet()
@@ -47,7 +47,7 @@ fetchSnippet()
           <div  key={sni.id} className='p-3 border rounded '>
             <h1 className=' font-semibold'>{sni.title} </h1>
           <h3 >{sni.code} </h3>
-           <CreateComment snippetId={sni.id}/>
+           <CreateComment snippet={sni}/>
           </div>
         ))
       }
